@@ -11,7 +11,7 @@ El objetivo principal es crear una herramienta práctica y motivadora que facili
 | Agreda Iparraguirre Rodrigo Imanol | Líder del proyecto | [LinkedIn](https://www.linkedin.com/in/rodrigo-agreda-iparraguirre-7b9429260/)             |
 | Gilian Alayo Mario Sebastian       | Developer        | [LinkedIn](https://www.linkedin.com/in/mario-sebastian-gilian-alayo-b8b0042a4/)            |
 | Alonso Vidal John Steven           | Developer        | [LinkedIn]()                                                                              |
-| Carranza Jacinto Juan Diego        | Developer        | [LinkedIn]()                                                                              |
+| Carranza Jacinto Juan Diego        | Developer        | [LinkedIn](https://www.linkedin.com/in/juan-diego-carranza-jacinto-a78023329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)                                                                              |
 | Vilchez Zavaleta Edwin Valentino   | Developer        | [LinkedIn]()                                                                              |
 
 ### Funcionalidades
@@ -43,3 +43,8 @@ El objetivo principal es crear una herramienta práctica y motivadora que facili
 - Aunque los expertos no son el segmento objetivo principal, su conocimiento es fundamental para asegurar que los recursos y recomendaciones en la plataforma sean precisos y efectivos. Los estudiantes deberán realizar reuniones con expertos en salud para diseñar el contenido y las funcionalidades adecuadas.
 - Los expertos se benefician al recibir compensaciones por la creación de recursos exclusivos que se distribuyen a través de la plataforma, lo cual les permite ampliar su alcance y acceder a una audiencia más amplia.
 
+## Diagramas de Aplicación
+### Diagrama de clases:
+![Diagrama de Clases](diagrama_clases_healthy.png)
+### Diagrama de base de datos:
+![Diagrama de Clases](diagrama_base_datos_healthy.png)
