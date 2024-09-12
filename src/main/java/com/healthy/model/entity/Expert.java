@@ -9,7 +9,7 @@ import lombok.Data;
 public class Expert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;

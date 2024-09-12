@@ -10,7 +10,7 @@ import lombok.Data;
 public class Habit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "habit_type_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_habit_types"))
