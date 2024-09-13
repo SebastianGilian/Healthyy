@@ -10,9 +10,9 @@ El objetivo principal es crear una herramienta práctica y motivadora que facili
 |------------------------------------|------------------|--------------------------------------------------------------------------------------------|
 | Agreda Iparraguirre Rodrigo Imanol | Líder del proyecto | [LinkedIn](https://www.linkedin.com/in/rodrigo-agreda-iparraguirre-7b9429260/)             |
 | Gilian Alayo Mario Sebastian       | Developer        | [LinkedIn](https://www.linkedin.com/in/mario-sebastian-gilian-alayo-b8b0042a4/)            |
-| Alonso Vidal John Steven           | Developer        | [LinkedIn]()                                                                              |
+| Alonso Vidal John Steven           | Developer        | [LinkedIn](http://www.linkedin.com/in/john-steve-alonso-vidal-348830328)                                                                              |
 | Carranza Jacinto Juan Diego        | Developer        | [LinkedIn](https://www.linkedin.com/in/juan-diego-carranza-jacinto-a78023329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)                                                                              |
-| Vilchez Zavaleta Edwin Valentino   | Developer        | [LinkedIn]()                                                                              |
+| Vilchez Zavaleta Edwin Valentino   | Developer        | [LinkedIn](https://www.linkedin.com/in/vzvalentiino/)                                                                              |
 
 ### Funcionalidades
 
