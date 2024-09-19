@@ -3,8 +3,8 @@ package com.healthy.model.entity;
 import com.healthy.model.enums.PlanStatus;
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -33,4 +33,7 @@ public class Plan {
     @Enumerated(EnumType.STRING)
     @Column(name = "plan_status", nullable = false)
     private PlanStatus planStatus;
+
+    @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
+    private List<Goal> goals;
 }

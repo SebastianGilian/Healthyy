@@ -13,14 +13,6 @@ public class TrackingRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name ="FK_tracking_record_user"))
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "goal_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_tracking_record_goal"))
-    private Goal goal;
-
     @Column(name = "date")
     private LocalDateTime date;
 
@@ -29,4 +21,8 @@ public class TrackingRecord {
 
     @Column(name = "note")
     private String note;
+
+    @ManyToOne
+    @JoinColumn(name = "goal_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_tracking_record_goal"))
+    private Goal goal;
 }

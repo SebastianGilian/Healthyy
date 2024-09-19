@@ -2,7 +2,6 @@ package com.healthy.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDateTime;
 
 @Data
@@ -24,4 +23,5 @@ public class HabitType {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
 }

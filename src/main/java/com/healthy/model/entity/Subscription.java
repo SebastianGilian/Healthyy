@@ -9,13 +9,13 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "suscriptions")
+@Table(name = "subscriptions")
 public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_subscription_user"))
     private User user;
 
@@ -36,4 +36,7 @@ public class Subscription {
     @Enumerated(EnumType.STRING)
     @Column(name = "subscription_status")
     private SubscriptionStatus subscriptionStatus;
+
+    @Column(nullable = false)
+    private Float price;
 }

@@ -3,6 +3,7 @@ package com.healthy.model.entity;
 import com.healthy.model.enums.ResourceType;
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,6 +30,7 @@ public class Resource {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
-    /*@Column(nullable = false)
-    private Float price;*/
+    @Column(nullable = false)
+    private Float price;
+
 }
