@@ -4,8 +4,7 @@ import com.healthy.dto.TrackingRecordCreateDTO;
 import com.healthy.dto.TrackingRecordDTO;
 import com.healthy.dto.TrackingRecordGoalCreateDTO;
 import com.healthy.dto.TrackingRecordGoalDTO;
-import com.healthy.model.entity.Goal;
-import com.healthy.model.entity.TrackingRecord;
+import com.healthy.model.entity.*;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
@@ -46,7 +45,18 @@ public class TrackingRecordMapper {
 
     private Goal toGoalTrackingRecordEntity(TrackingRecordGoalCreateDTO trgDTO){
         Goal goal = modelMapper.map(trgDTO, Goal.class);
-        return null;
+        Profile profile = new Profile();
+        Habit habit = new Habit();
+        Plan plan = new Plan();
+        profile.setId(trgDTO.getProfileId());
+        habit.setId(trgDTO.getHabitId());
+        plan.setId(trgDTO.getPlanId());
+        goal.setPlan(plan);
+        goal.setHabit(habit);
+        goal.setProfile(profile);
+
+
+        return goal;
     }
     private TrackingRecordGoalDTO toTrackingRecordGoalDTO(Goal goal){
         TrackingRecordGoalDTO dto = modelMapper.map(goal, TrackingRecordGoalDTO.class);

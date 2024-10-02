@@ -21,11 +21,10 @@ public class TrackingRecordServiceImpl implements TrackingRecordService {
     private final TrackingRecordRepository trackingRecordRepository;
     private final TrackingRecordMapper trackingRecordMapper;
 
-    @Transactional(readOnly = true)
+    @Transactional()
     @Override
     public TrackingRecordDTO createTrackingRecord(TrackingRecordCreateDTO trackingRecordCreateDTO){
         TrackingRecord trackingRecord = trackingRecordMapper.toTrackingRecordCreateDTO(trackingRecordCreateDTO);
-        trackingRecord.setDate(LocalDateTime.now());
         TrackingRecord savedTrackingRecord = trackingRecordRepository.save(trackingRecord);
         return trackingRecordMapper.toTrackingRecordDTO(savedTrackingRecord);
     }

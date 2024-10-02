@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class TrackingRecordCreateDTO {
+    private Integer id;
     private LocalDateTime date;
     private Float value;
     private String note;
