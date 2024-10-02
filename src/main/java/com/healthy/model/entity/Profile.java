@@ -4,6 +4,8 @@ import com.healthy.model.enums.Gender;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "profiles")
@@ -15,6 +17,9 @@ public class Profile {
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_profile_user"))
     private User user;
+
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "height", nullable = false)
     private Float height;
@@ -31,4 +36,13 @@ public class Profile {
 
     @Column(name = "health_conditions", columnDefinition = "TEXT")
     private String healthConditions;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<Goal> goals;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<Plan> plans;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<Subscription> subscriptions;
 }

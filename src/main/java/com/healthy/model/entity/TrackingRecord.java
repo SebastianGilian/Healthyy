@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,7 +23,6 @@ public class TrackingRecord {
     @Column(name = "note")
     private String note;
 
-    @ManyToOne
-    @JoinColumn(name = "goal_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_tracking_record_goal"))
-    private Goal goal;
+    @OneToMany(mappedBy = "trackingRecord", cascade = CascadeType.ALL)
+    private List<Goal> goals;
 }

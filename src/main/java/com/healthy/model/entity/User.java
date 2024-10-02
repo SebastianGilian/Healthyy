@@ -25,13 +25,4 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Goal> goals;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Plan> plans;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Subscription> subscriptions;
 }

@@ -15,8 +15,8 @@ public class Goal {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_goal_user"))
-    private User user;
+    @JoinColumn(name = "profile_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_goal_profile"))
+    private Profile profile;
 
     @ManyToOne
     @JoinColumn(name = "habit_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_goal_habit"))
@@ -42,6 +42,7 @@ public class Goal {
     @Column(name = "goal_status")
     private GoalStatus goalStatus;
 
-    @OneToMany(mappedBy = "goal", cascade = CascadeType.ALL)
-    private List<TrackingRecord> trackingRecords;
+    @ManyToOne
+    @JoinColumn(name="trackingRecord_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_goal_tracking_record"))
+    private TrackingRecord trackingRecord;
 }
