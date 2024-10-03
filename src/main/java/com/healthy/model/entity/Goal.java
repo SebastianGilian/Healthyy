@@ -42,7 +42,6 @@ public class Goal {
     @Column(name = "goal_status")
     private GoalStatus goalStatus;
 
-    @ManyToOne
-    @JoinColumn(name="trackingRecord_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_goal_tracking_record"))
-    private TrackingRecord trackingRecord;
+    @OneToMany(mappedBy = "goal", cascade = CascadeType.ALL)
+    private List<TrackingRecord> trackingRecords;
 }
