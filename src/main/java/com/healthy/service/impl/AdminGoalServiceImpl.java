@@ -13,6 +13,8 @@ import com.healthy.repository.PlanRepository;
 import com.healthy.repository.ProfileRepository;
 import com.healthy.service.GoalService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +23,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class GoalServiceImpl implements GoalService {
+public class AdminGoalServiceImpl implements GoalService {
 
     private final GoalRepository goalRepository;
     private final GoalMapper goalMapper;
@@ -31,7 +33,7 @@ public class GoalServiceImpl implements GoalService {
 
     @Transactional
     @Override
-    public GoalDTO createGoal(GoalCreateDTO goalDTO){
+    public GoalDTO create(GoalCreateDTO goalDTO){
         Goal goal = goalMapper.toGoalCreateDTO(goalDTO);
 
         Profile profile = profileRepository.findById(goalDTO.getProfileId())
@@ -43,24 +45,53 @@ public class GoalServiceImpl implements GoalService {
 
         goal.setProfile(profile);
         goal.setHabit(habit);
-        goal.setPlan(plan);
         goal.setStartDate(LocalDateTime.now());
         Goal savedGoal = goalRepository.save(goal);
         return goalMapper.toGoalDTO(savedGoal);
     }
+
+    @Transactional
+    @Override
+    public GoalDTO update(Integer id, GoalCreateDTO updateGoal){
+        Goal fromGoalDb = goalRepository.findById(id).
+                orElseThrow(() -> new RuntimeException("Goal not found"));
+        Profile profile = profileRepository.findById(updateGoal.getProfileId())
+                .orElseThrow(() -> new RuntimeException("Perfil "+updateGoal.getProfileId()+" not found"));
+        Habit habit = habitRepository.findById(updateGoal.getHabitId())
+                .orElseThrow(() -> new RuntimeException("Habit not found"));
+        Plan plan = planRepository.findById(updateGoal.getPlanId())
+                .orElseThrow(() -> new RuntimeException("Plan not found"));
+
+        fromGoalDb.setProfile(profile);
+        fromGoalDb.setHabit(habit);
+        fromGoalDb.setPlan(plan);
+        fromGoalDb.setStartDate(LocalDateTime.now());
+
+        fromGoalDb = goalRepository.save(fromGoalDb);
+
+        return goalMapper.toGoalDTO(fromGoalDb);
+    }
+
     @Transactional(readOnly = true)
     @Override
-    public List<GoalDTO> getAllGoals(){
+    public List<GoalDTO> getAll(){
         List<Goal> goals = goalRepository.findAll();
         return goals.stream()
                 .map(goalMapper::toGoalDTO)
                 .toList();
     }
-    public List<GoalDTO> getGoalByID(Integer id){
+    @Transactional(readOnly = true)
+    @Override
+    public List<GoalDTO> getById(Integer id){
         return goalRepository.findById(id).stream()
                 .map(goalMapper::toGoalDTO)
                 .toList();
-
+    }
+    @Transactional(readOnly = true)
+    @Override
+    public Page<GoalDTO> paginate(Pageable pageable) {
+        return goalRepository.findAll(pageable)
+                .map(goalMapper::toGoalDTO);
     }
     public void deleteGoal(Integer id){
         goalRepository.deleteById(id);

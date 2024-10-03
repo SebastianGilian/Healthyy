@@ -32,11 +32,8 @@ public class PlanMapper {
         plan.setEndDate(planCreateDTO.getEndDate());
         plan.setPlanStatus(planCreateDTO.getStatus());
 
+        plan.setGoals(null);
 
-        //LISTA
-        plan.setGoals(planCreateDTO.getGoals().stream()
-                .map(goalMapper::toGoalCreateDTO)
-                .toList());
         return plan;
     }
     public PlanDTO toPlanDTO(Plan plan) {
@@ -48,9 +45,11 @@ public class PlanMapper {
         planDTO.setEndDate(plan.getEndDate());
         planDTO.setPlanStatus(plan.getPlanStatus());
 
-        planDTO.setGoals(plan.getGoals().stream()
-                .map(goalMapper::toGoalDTO)
-                .toList());
+        if(plan.getGoals() != null) {
+            planDTO.setGoals(plan.getGoals().stream()
+                    .map(goalMapper::toGoalDTO)
+                    .toList());
+        }
 
         return planDTO;
     }

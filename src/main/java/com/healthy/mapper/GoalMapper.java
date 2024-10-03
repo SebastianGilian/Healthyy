@@ -79,4 +79,12 @@ public class GoalMapper {
         gtrDTO.setValue(trackingRecord.getValue());
         return gtrDTO;
     }
+
+    public Goal toEntity(GoalCreateDTO goalCreateUpdateDTO) {
+        return modelMapper.map(goalCreateUpdateDTO, Goal.class);
+    }
+
+    public GoalCreateDTO toGoalCreateUpdateDTO(Goal goal) {
+        return modelMapper.map(goal, GoalCreateDTO.class);
+    }
 }

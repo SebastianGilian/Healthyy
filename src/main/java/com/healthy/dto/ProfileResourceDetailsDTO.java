@@ -6,7 +6,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ProfileResourceDTO {
+public class ProfileResourceDetailsDTO {
     private boolean is_active;
     private LocalDateTime access_expiration;
 
@@ -23,4 +23,7 @@ public class ProfileResourceDTO {
     private String description;
     private ResourceType resourceType;
     private String content;
+
+    // USUARIO
+    private String userName;
 }

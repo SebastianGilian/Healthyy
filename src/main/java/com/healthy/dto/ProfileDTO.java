@@ -15,6 +15,6 @@ public class ProfileDTO {
     private String healthConditions;
 
     private List<PlanDTO> plans;
-    private List<ProfileResourceDTO> resources;
+    private List<ProfileResourceDetailsDTO> resources;
     private List<ProfileSubscriptionDTO> subPlans;
 }

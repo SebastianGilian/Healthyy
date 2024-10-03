@@ -15,7 +15,4 @@ public class PlanCreateDTO {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private PlanStatus status;
-
-    private List<GoalCreateDTO> goals;
-
 }

@@ -1,6 +1,5 @@
 package com.healthy.dto;
 
-import com.healthy.model.enums.Gender;
 import com.healthy.model.enums.PlanStatus;
 import lombok.Data;
 

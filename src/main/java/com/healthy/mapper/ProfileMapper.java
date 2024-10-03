@@ -1,7 +1,7 @@
 package com.healthy.mapper;
 
 import com.healthy.dto.ProfileDTO;
-import com.healthy.dto.ProfileResourceDTO;
+import com.healthy.dto.ProfileResourceDetailsDTO;
 import com.healthy.dto.ProfileSubscriptionDTO;
 import com.healthy.model.entity.*;
 import org.modelmapper.ModelMapper;
@@ -35,10 +35,14 @@ public class ProfileMapper {
         profileDTO.setResources(profile.getProfileResources().stream()
                 .map(this::toProfileResourceDTO)
                 .toList());
+        profileDTO.setSubPlans(profile.getSubPlans().stream()
+                .map(this::toProfileSubscriptionDTO)
+                .toList());
+
         return profileDTO;
     }
-    private ProfileResourceDTO toProfileResourceDTO(ProfileResource profileResource) {
-        ProfileResourceDTO profileResourceDTO = modelMapper.map(profileResource, ProfileResourceDTO.class);
+    private ProfileResourceDetailsDTO toProfileResourceDTO(ProfileResource profileResource) {
+        ProfileResourceDetailsDTO profileResourceDTO = modelMapper.map(profileResource, ProfileResourceDetailsDTO.class);
 
         //DE PROFILE RESOURCE
         profileResourceDTO.set_active(profileResource.is_active());
@@ -58,6 +62,8 @@ public class ProfileMapper {
         profileResourceDTO.setResourceType(profileResource.getResource().getResourceType());
         profileResourceDTO.setContent(profileResource.getResource().getContent());
 
+        profileResourceDTO.setUserName(profileResource.getProfile().getUserName());
+
         return profileResourceDTO;
     }
     private ProfileSubscriptionDTO toProfileSubscriptionDTO(Subscription subscription) {
@@ -67,6 +73,7 @@ public class ProfileMapper {
         profileSubscriptionDTO.setEndAt(subscription.getEndAt());
         profileSubscriptionDTO.setPaymentStatus(subscription.getPaymentStatus());
         profileSubscriptionDTO.setSubscriptionStatus(subscription.getSubscriptionStatus());
+
 
         // PARA SUBPLAN
         profileSubscriptionDTO.setSubPlanName(subscription.getSubPlan().getName());
