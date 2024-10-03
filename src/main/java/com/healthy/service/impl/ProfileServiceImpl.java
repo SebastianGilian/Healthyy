@@ -1,10 +1,9 @@
 package com.healthy.service.impl;
 
-import com.healthy.dto.ProfileCreateDTO;
+
 import com.healthy.dto.ProfileDTO;
 import com.healthy.mapper.ProfileMapper;
 import com.healthy.model.entity.Profile;
-import com.healthy.model.entity.User;
 import com.healthy.repository.ProfileRepository;
 import com.healthy.repository.UserRepository;
 import com.healthy.service.ProfileService;
@@ -22,17 +21,7 @@ public class ProfileServiceImpl implements ProfileService {
     private final ProfileMapper profileMapper;
     private final UserRepository userRepository;
 
-    @Transactional
-    @Override
-    public ProfileDTO createProfile(ProfileCreateDTO profileDTO){
-        Profile profile = profileMapper.toProfileCreateDTO(profileDTO);
 
-        User user = userRepository.findById(profileDTO.getUserID())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        profile.setUser(user);
-        return profileMapper.toProfileDTO(profileRepository.save(profile));
-    }
     @Transactional(readOnly = true)
     @Override
     public List<ProfileDTO> getAllProfiles(){
@@ -40,5 +29,12 @@ public class ProfileServiceImpl implements ProfileService {
         return profiles.stream()
                 .map(profileMapper::toProfileDTO)
                 .toList();
+    }
+    @Transactional(readOnly = true)
+    @Override
+    public ProfileDTO getProfileById(Integer id){
+        Profile profile = profileRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Profile not found"));
+        return profileMapper.toProfileDTO(profile);
     }
 }

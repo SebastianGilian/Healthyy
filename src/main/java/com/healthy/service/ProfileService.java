@@ -6,6 +6,6 @@ import com.healthy.dto.ProfileDTO;
 import java.util.List;
 
 public interface ProfileService {
-    ProfileDTO createProfile(ProfileCreateDTO profileDTO);
     List<ProfileDTO> getAllProfiles();
+    ProfileDTO getProfileById(Integer id);
 }

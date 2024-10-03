@@ -14,5 +14,7 @@ public class ProfileDTO {
     private Gender gender;
     private String healthConditions;
 
-    private List<GoalDTO> goals;
+    private List<PlanDTO> plans;
+    private List<ProfileResourceDTO> resources;
+    private List<ProfileSubscriptionDTO> subPlans;
 }

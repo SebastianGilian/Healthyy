@@ -21,4 +21,9 @@ public class ProfileController {
         List<ProfileDTO> profile = profileService.getAllProfiles();
         return ResponseEntity.ok(profile);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<ProfileDTO> getProfileById(@PathVariable("id") Integer id){
+        ProfileDTO profile = profileService.getProfileById(id);
+        return new ResponseEntity<>(profile, HttpStatus.OK);
+    }
 }

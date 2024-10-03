@@ -5,7 +5,6 @@ import com.healthy.dto.GoalDTO;
 import com.healthy.dto.GoalTrackingRecordCreateDTO;
 import com.healthy.dto.GoalTrackingRecordDTO;
 import com.healthy.model.entity.*;
-import com.healthy.repository.ProfileRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
@@ -50,7 +49,7 @@ public class GoalMapper {
         goalDTO.setGoalStatus(goal.getGoalStatus());
 
         // PROFILE
-        goalDTO.setName(goal.getProfile().getName());
+        goalDTO.setName(goal.getProfile().getUserName());
         //HABITO
         goalDTO.setHabitName(goal.getHabit().getName());
         goalDTO.setHabitTypeName(goal.getHabit().getHabitType().getName());

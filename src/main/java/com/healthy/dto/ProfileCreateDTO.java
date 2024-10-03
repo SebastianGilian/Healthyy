@@ -7,12 +7,9 @@ import java.util.List;
 
 @Data
 public class ProfileCreateDTO {
-
     private Integer userID;
-    private String name;
+    private String userName;
     private Integer age;
     private Gender gender;
     private String healthConditions;
-
-    private List<GoalCreateDTO> goals;
 }

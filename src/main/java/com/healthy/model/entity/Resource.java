@@ -17,6 +17,10 @@ public class Resource {
     @JoinColumn(name = "expert_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_resource_expert"))
     private Expert expert;
 
+    @ManyToOne
+    @JoinColumn(name = "sub_plan_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_resource_sub_plan"))
+    private SubPlan subPlan;
+
     @Column(nullable = false)
     private String title;
 

@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "profiles")
-public class Profile {
+public class  Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,8 +18,8 @@ public class Profile {
     @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_profile_user"))
     private User user;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "user_name", nullable = false)
+    private String userName;
 
     @Column(name = "height", nullable = false)
     private Float height;
@@ -44,5 +44,8 @@ public class Profile {
     private List<Plan> plans;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
-    private List<Subscription> subscriptions;
+    private List<ProfileResource> profileResources;
+
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    private List<Subscription> subPlans;
 }
