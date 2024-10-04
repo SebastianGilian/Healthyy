@@ -58,7 +58,7 @@ public class AdminPlanServiceImpl implements PlanService {
         Plan plan = planMapper.toPlanCreateDTO(planCreateDTO);
 
         Profile profile = profileRepository.findById(planCreateDTO.getProfileId())
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Profile "+planCreateDTO.getProfileId()+" not found"));
         plan.setProfile(profile);
 
         plan.setStartDate(LocalDateTime.now());
@@ -90,7 +90,7 @@ public class AdminPlanServiceImpl implements PlanService {
 
     public void delete(Integer id) {
         Plan plan = planRepository.findById(id).
-                orElseThrow(() -> new RuntimeException("Plan not found"));
+                orElseThrow(() -> new ResourceNotFoundException("Plan "+id+" not found"));
         planRepository.delete(plan);
     }
 

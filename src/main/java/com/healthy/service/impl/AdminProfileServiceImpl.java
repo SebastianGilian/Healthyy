@@ -2,6 +2,7 @@ package com.healthy.service.impl;
 
 
 import com.healthy.dto.ProfileDTO;
+import com.healthy.exception.ResourceNotFoundException;
 import com.healthy.mapper.ProfileMapper;
 import com.healthy.model.entity.Profile;
 import com.healthy.repository.ProfileRepository;
@@ -35,7 +36,7 @@ public class AdminProfileServiceImpl implements ProfileService {
     @Override
     public ProfileDTO findById(Integer id){
         Profile profile = profileRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Profile "+id+" not found"));
         return profileMapper.toProfileDTO(profile);
     }
 }

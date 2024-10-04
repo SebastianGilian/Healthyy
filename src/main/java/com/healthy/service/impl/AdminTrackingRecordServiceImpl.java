@@ -2,6 +2,7 @@ package com.healthy.service.impl;
 
 import com.healthy.dto.TrackingRecordCreateUpdateDTO;
 import com.healthy.dto.TrackingRecordDetailsDTO;
+import com.healthy.exception.ResourceNotFoundException;
 import com.healthy.mapper.TrackingRecordMapper;
 import com.healthy.model.entity.Goal;
 import com.healthy.model.entity.TrackingRecord;
@@ -51,7 +52,7 @@ public class AdminTrackingRecordServiceImpl implements AdminTrackingRecordServic
     @Override
     public TrackingRecordDetailsDTO findById(int id) {
         TrackingRecord trackingRecord = trackingRecordRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No record found with id " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No record found with id " + id));
         return trackingRecordMapper.toDetailsDTO(trackingRecord);
     }
 
@@ -59,7 +60,7 @@ public class AdminTrackingRecordServiceImpl implements AdminTrackingRecordServic
     @Override
     public TrackingRecordDetailsDTO create(TrackingRecordCreateUpdateDTO trackingRecordCreateUpdateDTO) {
         Goal goal = goalRepository.findById(trackingRecordCreateUpdateDTO.getGoal_id())
-                .orElseThrow(() -> new RuntimeException("Goal not found with id: "+trackingRecordCreateUpdateDTO.getGoal_id()));
+                .orElseThrow(() -> new ResourceNotFoundException("Goal not found with id: "+trackingRecordCreateUpdateDTO.getGoal_id()));
 
         TrackingRecord trackingRecord = trackingRecordMapper.toEntity(trackingRecordCreateUpdateDTO);
         trackingRecord.setGoal(goal);
@@ -71,10 +72,10 @@ public class AdminTrackingRecordServiceImpl implements AdminTrackingRecordServic
     @Override
     public TrackingRecordDetailsDTO update(Integer id, TrackingRecordCreateUpdateDTO updateTrackingRecord) {
         TrackingRecord trackingRecordFromDb = trackingRecordRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No record found with id " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("No record found with id " + id));
 
         Goal goal = goalRepository.findById(updateTrackingRecord.getGoal_id())
-                .orElseThrow(() -> new RuntimeException("Goal not found with id: "+updateTrackingRecord.getGoal_id()));
+                .orElseThrow(() -> new ResourceNotFoundException("Goal not found with id: "+updateTrackingRecord.getGoal_id()));
 
         trackingRecordFromDb.setGoal(goal);
         trackingRecordFromDb.setDate(LocalDateTime.now());
@@ -87,7 +88,7 @@ public class AdminTrackingRecordServiceImpl implements AdminTrackingRecordServic
     @Override
     public void delete(Integer id) {
         TrackingRecord trackingrecord = trackingRecordRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("No record found with id " + id));
+                .orElseThrow(()->new ResourceNotFoundException("No record found with id " + id));
         trackingRecordRepository.delete(trackingrecord);
     }
 }

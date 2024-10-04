@@ -1,5 +1,6 @@
 package com.healthy.service.impl;
 
+import com.healthy.exception.BadRequestException;
 import com.healthy.model.entity.User;
 import com.healthy.repository.UserRepository;
 import com.healthy.service.AdminUserService;
@@ -17,7 +18,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     public User registerUser(User user) {
         if(userRepository.existsByEmail(user.getEmail())) {
-            throw new RuntimeException("El email ya esta registrado");
+            throw new BadRequestException("El email "+user.getEmail()+" ya esta registrado");
         }
         return userRepository.save(user);
     }

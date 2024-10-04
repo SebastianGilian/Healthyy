@@ -2,6 +2,7 @@ package com.healthy.service.impl;
 
 import com.healthy.dto.GoalCreateDTO;
 import com.healthy.dto.GoalDTO;
+import com.healthy.exception.ResourceNotFoundException;
 import com.healthy.mapper.GoalMapper;
 import com.healthy.model.entity.Goal;
 import com.healthy.model.entity.Habit;
@@ -37,11 +38,11 @@ public class AdminGoalServiceImpl implements GoalService {
         Goal goal = goalMapper.toGoalCreateDTO(goalDTO);
 
         Profile profile = profileRepository.findById(goalDTO.getProfileId())
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Profile "+goalDTO.getProfileId()+" not found"));
         Habit habit = habitRepository.findById(goalDTO.getHabitId())
-                        .orElseThrow(() -> new RuntimeException("Habit not found"));
+                        .orElseThrow(() -> new ResourceNotFoundException("Habit "+goalDTO.getHabitId()+" not found"));
         Plan plan = planRepository.findById(goalDTO.getPlanId())
-                        .orElseThrow(() -> new RuntimeException("Plan not found"));
+                        .orElseThrow(() -> new ResourceNotFoundException("Plan "+goalDTO.getPlanId()+" not found"));
 
         goal.setProfile(profile);
         goal.setHabit(habit);
@@ -54,13 +55,13 @@ public class AdminGoalServiceImpl implements GoalService {
     @Override
     public GoalDTO update(Integer id, GoalCreateDTO updateGoal){
         Goal fromGoalDb = goalRepository.findById(id).
-                orElseThrow(() -> new RuntimeException("Goal not found"));
+                orElseThrow(() -> new ResourceNotFoundException("Goal "+id+" not found"));
         Profile profile = profileRepository.findById(updateGoal.getProfileId())
-                .orElseThrow(() -> new RuntimeException("Perfil "+updateGoal.getProfileId()+" not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Perfil "+updateGoal.getProfileId()+" not found"));
         Habit habit = habitRepository.findById(updateGoal.getHabitId())
-                .orElseThrow(() -> new RuntimeException("Habit not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Habit "+updateGoal.getHabitId()+" not found"));
         Plan plan = planRepository.findById(updateGoal.getPlanId())
-                .orElseThrow(() -> new RuntimeException("Plan not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Plan "+updateGoal.getPlanId()+" not found"));
 
         fromGoalDb.setProfile(profile);
         fromGoalDb.setHabit(habit);
