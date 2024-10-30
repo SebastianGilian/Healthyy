@@ -1,6 +1,11 @@
 package com.healthy.service;
-import com.healthy.model.entity.User;
+import com.healthy.dto.AuthResponseDTO;
+import com.healthy.dto.LoginDTO;
+import com.healthy.dto.UserDTO;
+
 
 public interface AdminUserService {
-    User registerUser(User user);
+    UserDTO registerUser(UserDTO user);
+    UserDTO updateUser(Integer id, UserDTO user);
+    AuthResponseDTO loginUser(LoginDTO loginDTO);
 }
