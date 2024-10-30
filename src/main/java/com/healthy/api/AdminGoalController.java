@@ -24,16 +24,19 @@ public class AdminGoalController {
     private final GoalService goalService;
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<GoalDTO>> getById(@PathVariable("id") Integer id) {
         List<GoalDTO> goal = goalService.getById(id);
         return ResponseEntity.ok(goal);
     }
     @GetMapping("/page")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<Page<GoalDTO>> getPage(@PageableDefault(size=5) Pageable pageable){
         Page<GoalDTO> goal = goalService.paginate(pageable);
         return new ResponseEntity<>(goal, HttpStatus.OK);
     }
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<GoalDTO>> getAll() {
         List<GoalDTO> goal = goalService.getAll();
         return ResponseEntity.ok(goal);

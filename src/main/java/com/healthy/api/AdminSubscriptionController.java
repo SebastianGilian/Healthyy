@@ -43,12 +43,14 @@ public class AdminSubscriptionController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<SubscriptionDTO> create(@Valid @RequestBody SubscriptionCreateDTO subscriptionFromDto) {
         SubscriptionDTO newSubscription = adminSubscriptionService.create(subscriptionFromDto);
         return new ResponseEntity<>(newSubscription, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<SubscriptionDTO> update(@PathVariable Integer id,
                                                          @Valid @RequestBody SubscriptionCreateDTO subscriptionFromDto) {
         SubscriptionDTO updatedSubscription = adminSubscriptionService.update(id, subscriptionFromDto);
@@ -56,6 +58,7 @@ public class AdminSubscriptionController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<SubscriptionDTO> delete(@PathVariable("id") Integer id) {
         adminSubscriptionService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -22,12 +22,14 @@ public class AdminSubPlanController {
     private final SubPlanService adminSubPlanService;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<SubPlanDTO>> listAll() {
         List<SubPlanDTO> subPlans = adminSubPlanService.getAll();
         return new ResponseEntity<>(subPlans, HttpStatus.OK);
     }
 
     @GetMapping("/page")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<Page<SubPlanDTO>> paginate(
             @PageableDefault(size = 5, sort = "name") Pageable pageable) {
         Page<SubPlanDTO> page = adminSubPlanService.paginate(pageable);
@@ -35,6 +37,7 @@ public class AdminSubPlanController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<SubPlanDTO> getById(@PathVariable Integer id) {
         SubPlanDTO expert = adminSubPlanService.findById(id);
         return new ResponseEntity<>(expert, HttpStatus.OK);

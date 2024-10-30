@@ -17,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/admin/habitTypes")
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminHabitTypeController {
     private final AdminHabitTypeService adminHabitTypeService;
 
@@ -36,21 +37,19 @@ public class AdminHabitTypeController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<HabitTypeDTO> getHabitTypeById(@PathVariable("id") Integer id) {
         HabitTypeDTO habitType = adminHabitTypeService.findById(id);
         return new ResponseEntity<>(habitType, HttpStatus.OK);
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HabitTypeDTO> createHabitType(@Valid @RequestBody HabitTypeDTO habitTypeDTO) {
         HabitTypeDTO newHabitType = adminHabitTypeService.create(habitTypeDTO);
         return new ResponseEntity<>(newHabitType, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HabitTypeDTO> updateHabitType(@PathVariable("id") Integer id,
                                                         @Valid @RequestBody HabitTypeDTO habitTypeDTO) {
         HabitTypeDTO updatedHabitType = adminHabitTypeService.update(id, habitTypeDTO);
@@ -58,7 +57,6 @@ public class AdminHabitTypeController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteHabitType(@PathVariable("id") Integer id) {
         adminHabitTypeService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

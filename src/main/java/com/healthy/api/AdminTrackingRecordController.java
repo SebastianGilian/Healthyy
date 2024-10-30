@@ -24,12 +24,14 @@ public class AdminTrackingRecordController {
     private final AdminTrackingRecordService adminTrackingRecordService;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<TrackingRecordDetailsDTO>> getAllTrackingRecords(){
         List<TrackingRecordDetailsDTO> trackingRecords = adminTrackingRecordService.getAll();
         return new ResponseEntity<>(trackingRecords, HttpStatus.OK);
     }
 
     @GetMapping("/page")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<Page<TrackingRecordDetailsDTO>> paginateTrackingRecords(
             @PageableDefault(size=10, sort="date") Pageable pageable)
     {
@@ -37,6 +39,7 @@ public class AdminTrackingRecordController {
         return new ResponseEntity<>(trackingRecords,HttpStatus.OK);
     }
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<TrackingRecordDetailsDTO> getTrackingRecordById(@PathVariable("id") Integer id){
         TrackingRecordDetailsDTO trackingRecord = adminTrackingRecordService.findById(id);
         return new ResponseEntity<>(trackingRecord,HttpStatus.OK);

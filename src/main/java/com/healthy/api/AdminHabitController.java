@@ -24,12 +24,14 @@ public class AdminHabitController {
     private final AdminHabitService adminHabitService;
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<List<HabitDetailsDTO>> getAllHabits(){
         List<HabitDetailsDTO> habits = adminHabitService.getAll();
         return new ResponseEntity<>(habits, HttpStatus.OK);
     }
 
     @GetMapping("/page")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<Page<HabitDetailsDTO>> paginateHabits(
             @PageableDefault(size=10, sort="name") Pageable pageable)
     {
@@ -38,6 +40,7 @@ public class AdminHabitController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<HabitDetailsDTO> getHabitById(@PathVariable Integer id){
         HabitDetailsDTO habit = adminHabitService.findById(id);
         return new ResponseEntity<>(habit,HttpStatus.OK);
