@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class SubscriptionDTO {
+    private Integer id;
     private LocalDateTime startAt;
     private LocalDateTime endAt;
     private PaymentStatus paymentStatus;

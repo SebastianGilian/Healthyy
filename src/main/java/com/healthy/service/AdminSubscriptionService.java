@@ -14,4 +14,5 @@ public interface AdminSubscriptionService {
     SubscriptionDTO create(SubscriptionCreateDTO subscriptionCreateUpdateDTO);
     SubscriptionDTO update(Integer id,SubscriptionCreateDTO subscriptionCreateUpdateDTO);
     void delete(Integer id);
+    SubscriptionDTO confirmPayment(Integer id);
 }

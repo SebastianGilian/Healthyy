@@ -7,6 +7,8 @@ import com.healthy.mapper.SubscriptionMapper;
 import com.healthy.model.entity.Profile;
 import com.healthy.model.entity.SubPlan;
 import com.healthy.model.entity.Subscription;
+import com.healthy.model.enums.PaymentStatus;
+import com.healthy.model.enums.SubscriptionStatus;
 import com.healthy.repository.ProfileRepository;
 import com.healthy.repository.SubPlanRepository;
 import com.healthy.repository.SubscriptionRepository;
@@ -92,4 +94,16 @@ public class AdminSubscriptionServiceImpl implements AdminSubscriptionService {
                 .orElseThrow(() -> new ResourceNotFoundException("No encontrado"));
         subscriptionRepository.delete(subscription);
     }
+
+    @Override
+    public SubscriptionDTO confirmPayment(Integer id) {
+        Subscription subscription = subscriptionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Subscription not found"));
+        subscription.setPaymentStatus(PaymentStatus.PAID);
+        subscription.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
+        Subscription updateSubscription = subscriptionRepository.save(subscription);
+        return subscriptionMapper.toDetailsDTO(updateSubscription);
+    }
+
+
 }
