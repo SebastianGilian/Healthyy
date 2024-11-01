@@ -19,7 +19,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
@@ -101,6 +103,8 @@ public class AdminSubscriptionServiceImpl implements AdminSubscriptionService {
                 .orElseThrow(() -> new ResourceNotFoundException("Subscription not found"));
         subscription.setPaymentStatus(PaymentStatus.PAID);
         subscription.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
+        subscription.setStartAt(LocalDateTime.now());
+        subscription.setEndAt(subscription.getStartAt().plusDays(subscription.getSubPlan().getDurationDays()));
         Subscription updateSubscription = subscriptionRepository.save(subscription);
         return subscriptionMapper.toDetailsDTO(updateSubscription);
     }
