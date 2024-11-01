@@ -1,7 +1,10 @@
 package com.healthy.api;
 
+import com.healthy.dto.ProfileCreateDTO;
 import com.healthy.dto.ProfileDTO;
+import com.healthy.model.entity.Profile;
 import com.healthy.service.ProfileService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,5 +35,11 @@ public class AdminProfileController {
     public ResponseEntity<ProfileDTO> findById(@PathVariable("id") Integer id){
         ProfileDTO profile = profileService.findById(id);
         return new ResponseEntity<>(profile, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProfileCreateDTO> create(@RequestBody @Valid ProfileCreateDTO profile){
+        ProfileCreateDTO newProfile = profileService.create(profile);
+        return new ResponseEntity<>(newProfile, HttpStatus.CREATED);
     }
 }

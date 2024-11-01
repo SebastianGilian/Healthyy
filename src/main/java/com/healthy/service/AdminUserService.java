@@ -6,6 +6,5 @@ import com.healthy.dto.UserDTO;
 
 public interface AdminUserService {
     UserDTO registerUser(UserDTO user);
-    UserDTO updateUser(Integer id, UserDTO user);
     AuthResponseDTO loginUser(LoginDTO loginDTO);
 }

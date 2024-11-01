@@ -1,5 +1,6 @@
 package com.healthy.mapper;
 
+import com.healthy.dto.ProfileCreateDTO;
 import com.healthy.dto.ProfileDTO;
 import com.healthy.dto.ProfileResourceDetailsDTO;
 import com.healthy.dto.ProfileSubscriptionDTO;
@@ -82,5 +83,8 @@ public class ProfileMapper {
         profileSubscriptionDTO.setDurationDays(subscription.getSubPlan().getDurationDays());
 
         return profileSubscriptionDTO;
+    }
+    public Profile toProfile(ProfileCreateDTO profileCreateDTO) {
+        return modelMapper.map(profileCreateDTO, Profile.class);
     }
 }

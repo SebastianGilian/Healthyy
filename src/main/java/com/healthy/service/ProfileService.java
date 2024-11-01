@@ -9,4 +9,5 @@ public interface ProfileService {
 
     List<ProfileDTO> getAll();
     ProfileDTO findById(Integer id);
+    ProfileCreateDTO create(ProfileCreateDTO profileCreateDTO);
 }

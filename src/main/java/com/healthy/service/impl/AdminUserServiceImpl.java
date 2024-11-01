@@ -39,16 +39,6 @@ public class AdminUserServiceImpl implements AdminUserService {
         return userMapper.toDto(userRepository.save(newUser));
     }
 
-    @Transactional
-    @Override
-    public UserDTO updateUser(Integer id, UserDTO userDTO){
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con el id: "+id));
-        user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());
-        user.setEmail(userDTO.getEmail());
-        return userMapper.toDto(userRepository.save(user));
-    }
 
     @Override
     public AuthResponseDTO loginUser(LoginDTO loginDTO) {

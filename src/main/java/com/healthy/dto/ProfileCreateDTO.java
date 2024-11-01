@@ -7,8 +7,9 @@ import java.util.List;
 
 @Data
 public class ProfileCreateDTO {
-    private Integer userID;
     private String userName;
+    private Float height;
+    private Float weight;
     private Integer age;
     private Gender gender;
     private String healthConditions;
