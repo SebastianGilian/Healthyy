@@ -3,11 +3,8 @@ package com.healthy.dto;
 import com.healthy.model.enums.Gender;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-public class ProfileCreateDTO {
-    private Integer userID;
+public class ProfileUpdateDTO {
     private String userName;
     private Integer age;
     private Float height;

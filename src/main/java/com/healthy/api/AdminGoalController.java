@@ -53,4 +53,10 @@ public class AdminGoalController {
         goalService.deleteGoal(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/dashboard/{profileId}")
+    public ResponseEntity<List<GoalDTO>> getDashboard(@PathVariable Integer profileId) {
+        List<GoalDTO> dashboard = goalService.getDashboard(profileId);
+        return ResponseEntity.ok(dashboard);
+    }
 }
