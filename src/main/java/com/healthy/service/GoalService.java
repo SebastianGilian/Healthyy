@@ -10,10 +10,11 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface GoalService {
-    GoalDTO create(GoalCreateDTO goalDTO);
+    GoalDTO create(GoalCreateDTO goalCreateDTO);
     Page<GoalDTO> paginate(Pageable pageable);
     List<GoalDTO> getAll();
     List<GoalDTO> getById(Integer id);
     GoalDTO update(Integer id, GoalCreateDTO updatedGoal);
     void deleteGoal(Integer id);
+    List<GoalDTO> getDashboard(Integer profileId);
 }

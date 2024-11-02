@@ -23,4 +23,10 @@ public class AdminUserController {
         User newUser = userService.registerUser(user);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Void> delete(@PathVariable Integer userId){
+        userService.deleteUser(userId);
+        return ResponseEntity.noContent().build();
+    }
 }
